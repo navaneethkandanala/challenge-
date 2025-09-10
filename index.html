@@ -19,11 +19,6 @@
         .logo-font {
             font-family: 'Playfair Display', serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
         .card {
             background-color: white;
             border-radius: 1rem;
@@ -74,8 +69,6 @@
             -ms-overflow-style: none; /* IE and Edge */
             scrollbar-width: none; /* Firefox */
         }
-
-        /* Marquee Animation */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -95,13 +88,19 @@
 
     <!-- Header -->
     <header class="bg-white shadow-sm py-4">
-        <nav class="container flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-gray-800 logo-font">Daily Dairy Co.</a>
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <!-- Cow SVG Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-blue-600">
+                    <path d="M11.25 4.5c.18 0 .36.03.532.094l1.432.48a3 3 0 0 1 1.625 2.573V8.25a.75.75 0 0 0 .75.75h3.196a.75.75 0 0 1 .75 1.079l-.683 1.026a.75.75 0 0 1-.502 1.22H15V13.5a.75.75 0 0 0 .75.75h.75a.75.75 0 0 1 0 1.5H7.5a.75.75 0 0 1 0-1.5h.75a.75.75 0 0 0 .75-.75v-.971l-1.427 2.14a.75.75 0 0 1-.48.802l-.936.312a.75.75 0 0 1-.72-.375 5.25 5.25 0 0 0-.825-1.285l-.04-.04a1.5 1.5 0 0 1-.365-1.892L7.33 9.423a2.25 2.25 0 0 0 .414-2.278 1.5 1.5 0 0 1 .462-1.205 2.25 2.25 0 0 0 .19-2.909 4.5 4.5 0 0 1 2.505-1.583ZM12.75 18a.75.75 0 0 0-1.5 0v.008a.75.75 0 0 0 1.5 0v-.008ZM12 21a.75.75 0 0 0-.75.75v.008a.75.75 0 0 0 1.5 0V21.75A.75.75 0 0 0 12 21Zm1.5-3.75a.75.75 0 0 0-1.5 0v.008a.75.75 0 0 0 1.5 0v-.008Z" />
+                </svg>
+                <a href="#" class="text-3xl font-bold text-gray-800 logo-font">Daily Dairy Co.</a>
+            </div>
             <div class="flex items-center space-x-4">
                 <div class="relative">
                     <input type="text" id="searchInput" placeholder="Search products..." class="w-48 sm:w-64 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2 text-sm">
                 </div>
-                <ul class="flex space-x-6">
+                <ul class="hidden md:flex space-x-6">
                     <li><a href="#featured" class="text-gray-600 hover:text-gray-900 transition-colors">Featured</a></li>
                     <li><a href="#products" class="text-gray-600 hover:text-gray-900 transition-colors">Products</a></li>
                     <li><a href="#facts" class="text-gray-600 hover:text-gray-900 transition-colors">Facts</a></li>
@@ -112,7 +111,7 @@
                     <!-- The sphere background -->
                     <div class="absolute w-12 h-12 rounded-full bg-gray-200 -z-10"></div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600 hover:text-blue-700 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.112 1.767.705 1.767H19.5a1 1 0 00.993-.883L21 11H8l-1-4h14a1 1 0 001-1v-1a1 1 0 00-1-1H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.112 1.767.705 1.767H19.5a1 1 0 00.993-.883L21 11H8l-1-4h14a1 1 0 001-1v-1a1 1 0 00-1-1H5.4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.112 1.767.705 1.767H19.5a1 1 0 00.993-.883L21 11H8l-1-4h14a1 1 0 001-1v-1a1 1 0 00-1-1H5.4" />
                     </svg>
                     <div id="cartCount" class="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</div>
                 </div>
@@ -137,7 +136,7 @@
 
     <!-- Hero Section -->
     <section class="bg-blue-100 py-12 md:py-24 text-center">
-        <div class="container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl md:text-6xl font-extrabold text-blue-800 leading-tight">
                 Discover the Goodness of Fresh Milk
             </h1>
@@ -149,7 +148,7 @@
 
     <!-- Featured Products Section with horizontal scrolling -->
     <section id="featured" class="py-12 md:py-24 relative">
-        <div class="container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Featured Products</h2>
             <div id="featuredCarousel" class="flex overflow-x-auto scrollbar-hide space-x-6 pb-4">
                 <!-- Featured product cards will be dynamically generated here -->
@@ -170,7 +169,7 @@
     
     <!-- Products Section with grid layout -->
     <section id="products" class="py-12 md:py-24">
-        <div class="container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Our Products</h2>
             <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- All product cards will be dynamically generated here -->
@@ -180,7 +179,7 @@
 
     <!-- Live Location Tracking Section -->
     <section id="track" class="py-12 md:py-24 bg-gray-200">
-        <div class="container text-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold mb-8">Track Your Order</h2>
             <div class="card p-8 max-w-2xl mx-auto">
                 <form id="trackForm" class="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
@@ -203,7 +202,7 @@
 
     <!-- Did You Know Section -->
     <section id="facts" class="bg-gray-200 py-12 md:py-24">
-        <div class="container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Did You Know?</h2>
             <div id="factCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 text-center">
@@ -224,7 +223,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-12 md:py-24">
-        <div class="container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Get in Touch</h2>
             <div class="card max-w-lg mx-auto p-8">
                 <form id="contactForm" class="space-y-4">
@@ -257,7 +256,7 @@
 
     <!-- Footer -->
     <footer class="bg-white py-6 shadow-md mt-12">
-        <div class="container text-center text-sm text-gray-500">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
             <p>&copy; 2024 Daily Dairy Co. All rights reserved.</p>
         </div>
     </footer>
@@ -317,8 +316,9 @@
             const products = [
                 {
                     name: "Whole Milk",
-                    description: "Rich and creamy, perfect for a hearty glass or a delicious shake.",
+                    description: "Our Whole Milk is a classic, farm-fresh choice with a rich, full-bodied flavour. Sourced from grass-fed cows, it's a creamy delight packed with essential vitamins and minerals for a nutritious start to your day.",
                     price: 45,
+                    units: "per 1 litre",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#F3F4F6"/>
@@ -332,8 +332,9 @@
                 },
                 {
                     name: "Skim Milk",
-                    description: "A light and refreshing option with all the essential nutrients.",
+                    description: "Light and refreshing, our Skim Milk offers the same essential nutrients as whole milk but with zero fat. It's the perfect guilt-free option for your coffee, cereal, or a post-workout protein boost.",
                     price: 40,
+                    units: "per 1 litre",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#F3F4F6"/>
@@ -347,8 +348,9 @@
                 },
                 {
                     name: "Lactose-Free Milk",
-                    description: "Enjoy the taste of milk without the lactose, easy on your stomach.",
+                    description: "Specially crafted for sensitive stomachs, our Lactose-Free Milk lets you enjoy the natural goodness of dairy without discomfort. It's a smooth, sweet, and easy-to-digest alternative.",
                     price: 55,
+                    units: "per 1 litre",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#F3F4F6"/>
@@ -361,8 +363,9 @@
                 },
                 {
                     name: "Flavored Milk",
-                    description: "A fun treat for all ages, available in chocolate, strawberry, and more.",
+                    description: "A delightful treat for all ages, our Flavored Milk is a fun and delicious way to get your dairy fix. Choose from a variety of exciting flavours like classic chocolate, sweet strawberry, and vibrant mango.",
                     price: 35,
+                    units: "per 200ml pack",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#6B4B3D"/>
@@ -375,8 +378,9 @@
                 },
                 {
                     name: "Organic Milk",
-                    description: "Sourced from grass-fed cows, free from antibiotics and artificial hormones.",
+                    description: "Pure and wholesome, our Organic Milk is sourced from cows raised on certified organic farms. Free from antibiotics and artificial hormones, it's a natural choice that supports both your health and a sustainable environment.",
                     price: 60,
+                    units: "per 1 litre",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#F3F4F6"/>
@@ -389,8 +393,9 @@
                 },
                 {
                     name: "Buttermilk",
-                    description: "Tangy and thick, ideal for baking, marinades, and a refreshing drink.",
+                    description: "Our Tangy Buttermilk is a versatile culinary hero. Its zesty flavour is perfect for tenderising meat in marinades, adding fluffiness to baked goods, or serving as a cool, refreshing drink on a hot day.",
                     price: 30,
+                    units: "per 500ml pack",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="100" height="120" rx="10" fill="#E0F7FA"/>
@@ -403,8 +408,9 @@
                 },
                 {
                     name: "Greek Yogurt",
-                    description: "High in protein and incredibly creamy, perfect for a healthy breakfast or snack.",
+                    description: "Indulge in the thick, velvety texture of our Greek Yogurt. Exceptionally high in protein, it's an ideal power-packed breakfast or a satisfying snack that keeps you full and energized throughout the day.",
                     price: 75,
+                    units: "per 250g tub",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="70" width="100" height="80" rx="10" fill="#F3F4F6"/>
@@ -418,8 +424,9 @@
                 },
                 {
                     name: "Cheddar Cheese",
-                    description: "A classic sharp cheese that adds flavor to any meal. Great for sandwiches or snacking.",
+                    description: "A timeless classic, our Sharp Cheddar Cheese brings a bold, nutty flavour to any dish. It's the perfect companion for crackers, a melt-in-your-mouth addition to sandwiches, or a savory snack on its own.",
                     price: 120,
+                    units: "per 200g block",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="40" y="70" width="120" height="60" rx="10" fill="#FDE68A"/>
@@ -432,8 +439,9 @@
                 },
                 {
                     name: "Paneer",
-                    description: "A fresh, non-melting cheese used widely in South Asian cuisine.",
+                    description: "A staple of Indian cuisine, our soft, fresh Paneer is a high-protein, non-melting cheese. Its subtle flavour makes it incredibly versatile for grilling, curries, or stir-fries.",
                     price: 90,
+                    units: "per 250g block",
                     image: `
                         <svg class="w-full h-48 rounded-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <rect x="60" y="60" width="80" height="80" rx="5" fill="#F9FAFB"/>
@@ -450,6 +458,7 @@
             const featuredProducts = products.slice(0, 4);
 
             let cart = [];
+            let trackingInterval = null;
 
             const featuredCarousel = document.getElementById('featuredCarousel');
             const prevBtn = document.getElementById('prevBtn');
@@ -469,32 +478,54 @@
             const placeOrderBtn = document.getElementById('placeOrderBtn');
             const closeReceiptBtn = document.getElementById('closeReceiptBtn');
             const receiptMessage = document.getElementById('receiptMessage');
-            
-            // Function to render products in a carousel format
-            const renderFeaturedProducts = (productsToRender) => {
-                featuredCarousel.innerHTML = '';
-                productsToRender.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('card', 'inline-block', 'w-80', 'flex-shrink-0', 'transform', 'scale-100', 'hover:scale-105', 'transition-transform', 'duration-300');
-                    
-                    const imageContainer = document.createElement('div');
-                    imageContainer.classList.add('w-full', 'h-48', 'rounded-lg', 'flex', 'items-center', 'justify-center', 'bg-gray-200', 'mb-4');
-                    imageContainer.innerHTML = product.image;
+            const trackForm = document.getElementById('trackForm');
+            const statusMessage = document.getElementById('statusMessage');
+            const locationPin = document.getElementById('locationPin');
 
-                    const contentDiv = document.createElement('div');
-                    contentDiv.innerHTML = `
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">${product.name}</h3>
-                        <p class="text-gray-600 mb-2">${product.description}</p>
-                        <div class="flex justify-between items-center mt-4">
+            // Helper function to create a product card element
+            const createProductCard = (product, index) => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('card');
+                
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('w-full', 'h-48', 'rounded-lg', 'flex', 'items-center', 'justify-center', 'bg-gray-200', 'mb-4');
+                imageContainer.innerHTML = product.image;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-gray-600 text-sm mb-2">${product.description}</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 space-y-2 sm:space-y-0">
+                        <div class="flex flex-col">
                             <p class="text-lg font-semibold text-gray-900">₹${product.price}</p>
+                            <span class="text-xs text-gray-500">${product.units}</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <select id="quantity-select-${index}" class="rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                             <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors add-to-cart-btn" data-index="${index}">
                                 Add to Cart
                             </button>
                         </div>
-                    `;
+                    </div>
+                `;
 
-                    productCard.appendChild(imageContainer);
-                    productCard.appendChild(contentDiv);
+                productCard.appendChild(imageContainer);
+                productCard.appendChild(contentDiv);
+                return productCard;
+            };
+
+            // Function to render products in a carousel format
+            const renderFeaturedProducts = (productsToRender) => {
+                featuredCarousel.innerHTML = '';
+                productsToRender.forEach((product, index) => {
+                    const productCard = createProductCard(product, index);
+                    productCard.classList.add('inline-block', 'w-80', 'flex-shrink-0', 'transform', 'scale-100', 'hover:scale-105', 'transition-transform', 'duration-300');
                     featuredCarousel.appendChild(productCard);
                 });
             };
@@ -503,27 +534,7 @@
             const renderProducts = (productsToRender) => {
                 productGrid.innerHTML = ''; // Clear previous products
                 productsToRender.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('card');
-                    
-                    const imageContainer = document.createElement('div');
-                    imageContainer.classList.add('w-full', 'h-48', 'rounded-lg', 'flex', 'items-center', 'justify-center', 'bg-gray-200', 'mb-4');
-                    imageContainer.innerHTML = product.image;
-
-                    const contentDiv = document.createElement('div');
-                    contentDiv.innerHTML = `
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">${product.name}</h3>
-                        <p class="text-gray-600 mb-2">${product.description}</p>
-                        <div class="flex justify-between items-center mt-4">
-                            <p class="text-lg font-semibold text-gray-900">₹${product.price}</p>
-                            <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors add-to-cart-btn" data-index="${index}">
-                                Add to Cart
-                            </button>
-                        </div>
-                    `;
-
-                    productCard.appendChild(imageContainer);
-                    productCard.appendChild(contentDiv);
+                    const productCard = createProductCard(product, index);
                     productGrid.appendChild(productCard);
                 });
             };
@@ -567,57 +578,69 @@
                 let total = 0;
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<p class="text-center text-gray-500">Your cart is empty.</p>';
+                    proceedToCheckoutBtn.disabled = true;
+                    proceedToCheckoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
                 } else {
-                    cart.forEach(item => {
+                    proceedToCheckoutBtn.disabled = false;
+                    proceedToCheckoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    cart.forEach((item, index) => {
+                        total += item.product.price * item.quantity;
                         const cartItem = document.createElement('div');
-                        cartItem.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'pb-2');
+                        cartItem.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'pb-4');
                         cartItem.innerHTML = `
-                            <div>
-                                <h4 class="font-semibold">${item.name}</h4>
-                                <span class="text-sm text-gray-600">₹${item.price} x ${item.quantity}</span>
+                            <div class="flex-1">
+                                <h4 class="font-bold">${item.product.name}</h4>
+                                <p class="text-gray-600">₹${item.product.price} x ${item.quantity}</p>
                             </div>
-                            <span class="font-semibold">₹${item.price * item.quantity}</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="quantity-btn bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300" data-index="${index}" data-action="decrease">-</button>
+                                <span class="font-bold">${item.quantity}</span>
+                                <button class="quantity-btn bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300" data-index="${index}" data-action="increase">+</button>
+                                <button class="remove-item-btn bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600" data-index="${index}">Remove</button>
+                            </div>
                         `;
                         cartItemsContainer.appendChild(cartItem);
-                        total += item.price * item.quantity;
                     });
                 }
                 cartTotalElement.textContent = `₹${total}`;
                 updateCartCount();
             };
 
-            const addToCart = (product) => {
-                const existingItem = cart.find(item => item.name === product.name);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({ ...product, quantity: 1 });
-                }
-                renderCart();
-            };
-            
-            // Event listener for adding items from the featured carousel
-            featuredCarousel.addEventListener('click', (e) => {
+            // Add to Cart listener delegation
+            document.body.addEventListener('click', (e) => {
                 if (e.target.classList.contains('add-to-cart-btn')) {
-                    const index = e.target.dataset.index;
-                    const product = featuredProducts[index];
-                    if (product) {
-                        addToCart(product);
-                    }
-                }
-            });
-
-            // Event listener for adding items from the main product grid
-            productGrid.addEventListener('click', (e) => {
-                if (e.target.classList.contains('add-to-cart-btn')) {
-                    const index = e.target.dataset.index;
+                    const index = e.target.getAttribute('data-index');
+                    const quantitySelect = document.getElementById(`quantity-select-${index}`);
+                    const quantity = parseInt(quantitySelect.value, 10);
                     const product = products[index];
-                    if (product) {
-                        addToCart(product);
+                    const existingItem = cart.find(item => item.product.name === product.name);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        cart.push({ product: product, quantity: quantity });
                     }
+                    renderCart();
+                }
+
+                // Handle quantity change and remove item
+                if (e.target.classList.contains('quantity-btn')) {
+                    const index = e.target.getAttribute('data-index');
+                    const action = e.target.getAttribute('data-action');
+                    if (action === 'increase') {
+                        cart[index].quantity++;
+                    } else if (action === 'decrease' && cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    }
+                    renderCart();
+                } else if (e.target.classList.contains('remove-item-btn')) {
+                    const index = e.target.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    renderCart();
                 }
             });
 
+            // Modal and Checkout flow
             cartButton.addEventListener('click', () => {
                 cartModal.style.display = 'block';
                 cartSection.classList.remove('hidden');
@@ -629,96 +652,91 @@
             closeButton.addEventListener('click', () => {
                 cartModal.style.display = 'none';
             });
-            
+
             window.addEventListener('click', (e) => {
-                if (e.target === cartModal) {
+                if (e.target == cartModal) {
                     cartModal.style.display = 'none';
                 }
             });
-
-            // Payment and Receipt functionality
+            
             proceedToCheckoutBtn.addEventListener('click', () => {
-                if (cart.length === 0) {
-                    // Show a message to the user that the cart is empty
-                    receiptMessage.textContent = 'Your cart is empty. Please add items to proceed.';
-                    cartSection.classList.add('hidden');
-                    paymentSection.classList.add('hidden');
-                    receiptSection.classList.remove('hidden');
-                } else {
-                    cartSection.classList.add('hidden');
-                    paymentSection.classList.remove('hidden');
-                }
+                cartSection.classList.add('hidden');
+                paymentSection.classList.remove('hidden');
             });
 
             placeOrderBtn.addEventListener('click', () => {
-                const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
-                if (selectedPayment) {
-                    const paymentMethod = selectedPayment.value === 'cod' ? 'Cash on Delivery' : 'UPI';
-                    const orderId = 'DD-' + Date.now(); // Simple unique order ID
-                    
-                    paymentSection.classList.add('hidden');
-                    receiptSection.classList.remove('hidden');
-                    
-                    receiptMessage.textContent = `Order ID: ${orderId}. Your payment method is ${paymentMethod}.`;
-                    
-                    // Clear the cart
-                    cart = [];
-                    updateCartCount();
-                } else {
-                    // Use a simple modal message box instead of alert()
-                    receiptMessage.textContent = 'Please select a payment method to place your order.';
-                    cartSection.classList.add('hidden');
-                    paymentSection.classList.add('hidden');
-                    receiptSection.classList.remove('hidden');
-                }
+                const orderId = Math.random().toString(36).substring(2, 10).toUpperCase();
+                receiptMessage.textContent = `Your Order ID is: #${orderId}`;
+                paymentSection.classList.add('hidden');
+                receiptSection.classList.remove('hidden');
+                cart = []; // Clear the cart after placing the order
+                updateCartCount();
             });
-
+            
             closeReceiptBtn.addEventListener('click', () => {
                 cartModal.style.display = 'none';
+                // Reset to cart view for next use
+                cartSection.classList.remove('hidden');
+                paymentSection.classList.add('hidden');
+                receiptSection.classList.add('hidden');
+                renderCart();
             });
 
+            // Contact Form submission (simulated)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                contactForm.reset();
+                
+                // Show a simple success message
+                const successMessage = document.createElement('p');
+                successMessage.textContent = "Thank you! Your message has been sent.";
+                successMessage.classList.add('text-green-600', 'mt-4', 'text-center', 'font-semibold');
+                contactForm.appendChild(successMessage);
+                
+                // Remove the message after a few seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 3000);
+            });
 
-            // Live tracking functionality
-            const trackForm = document.getElementById('trackForm');
-            const trackingStatus = document.getElementById('trackingStatus');
-            const statusMessage = document.getElementById('statusMessage');
-            const mapImage = document.getElementById('mapImage');
-            const locationPin = document.getElementById('locationPin');
-
+            // Live Location Tracking Simulation
             trackForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const orderId = document.getElementById('orderId').value;
-                if (orderId) {
-                    trackingStatus.classList.remove('hidden');
-                    simulateTracking(orderId);
+                if (!orderId) {
+                    statusMessage.textContent = "Please enter a valid Order ID.";
+                    return;
                 }
-            });
 
-            const simulateTracking = (orderId) => {
-                const statuses = [
-                    { message: `Order #${orderId} has been confirmed.`, pin: 'top: 90%; left: 10%;', map: 'https://placehold.co/800x600/F0F4F8/60A5FA?text=Order+Confirmed' },
-                    { message: `Your milk is being prepared for delivery.`, pin: 'top: 75%; left: 30%;', map: 'https://placehold.co/800x600/F0F4F8/60A5FA?text=Preparing+for+Delivery' },
-                    { message: `Your delivery is out for delivery!`, pin: 'top: 60%; left: 50%;', map: 'https://placehold.co/800x600/F0F4F8/60A5FA?text=Out+for+Delivery' },
-                    { message: `Your delivery is arriving soon.`, pin: 'top: 45%; left: 70%;', map: 'https://placehold.co/800x600/F0F4F8/60A5FA?text=Arriving+Soon' },
-                    { message: `Your order has been delivered!`, pin: 'top: 30%; left: 90%;', map: 'https://placehold.co/800x600/F0F4F8/60A5FA?text=Delivered!' },
-                ];
-
+                statusMessage.textContent = `Tracking order #${orderId}...`;
+                locationPin.style.transition = 'top 4s linear, left 4s linear';
+                
                 let step = 0;
-                const interval = setInterval(() => {
-                    if (step < statuses.length) {
-                        const currentStatus = statuses[step];
-                        statusMessage.textContent = currentStatus.message;
-                        mapImage.src = currentStatus.map;
-                        locationPin.style.top = currentStatus.pin.split(';')[0];
-                        locationPin.style.left = currentStatus.pin.split(';')[1];
+                const path = [
+                    { top: '80%', left: '20%', message: 'Order Confirmed - Preparing for dispatch.' },
+                    { top: '65%', left: '40%', message: 'Your order is out for delivery!' },
+                    { top: '45%', left: '60%', message: 'Your driver is just a few minutes away.' },
+                    { top: '25%', left: '80%', message: 'Your order has been delivered!' }
+                ];
+                
+                if (trackingInterval) clearInterval(trackingInterval);
+
+                trackingInterval = setInterval(() => {
+                    if (step < path.length) {
+                        locationPin.style.top = path[step].top;
+                        locationPin.style.left = path[step].left;
+                        statusMessage.textContent = path[step].message;
+                        if (step === path.length - 1) {
+                            setTimeout(() => {
+                                clearInterval(trackingInterval);
+                            }, 4000);
+                        }
                         step++;
-                    } else {
-                        clearInterval(interval);
                     }
-                }, 2000);
-            };
+                }, 4000); // Update every 4 seconds
+            });
         });
     </script>
-
 </body>
 </html>
