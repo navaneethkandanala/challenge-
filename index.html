@@ -178,23 +178,53 @@
     </section>
 
     <!-- Live Location Tracking Section -->
-    <section id="track" class="py-12 md:py-24 bg-gray-200">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-8">Track Your Order</h2>
-            <div class="card p-8 max-w-2xl mx-auto">
-                <form id="trackForm" class="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
-                    <input type="text" id="orderId" placeholder="Enter your Order ID..." class="flex-1 rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">
-                        Track
-                    </button>
-                </form>
-                <div id="trackingStatus" class="mt-4 text-left">
-                    <div id="statusMessage" class="text-lg font-semibold text-gray-800 mb-4"></div>
-                    <div id="liveMap" class="w-full h-80 rounded-lg overflow-hidden border-2 border-gray-300 relative">
-                        <!-- Location image will be placed here -->
-                        <img id="mapImage" src="https://placehold.co/800x600/F0F4F8/60A5FA?text=Tracking+map" alt="Live delivery map" class="w-full h-full object-cover">
-                        <div id="locationPin" class="absolute w-8 h-8 rounded-full bg-red-500 border-2 border-white -translate-x-1/2 -translate-y-1/2" style="top: 80%; left: 20%;"></div>
-                    </div>
+    <section id="track" class="py-12 md:py-24 bg-gray-200 flex items-center justify-center">
+        <!-- Main Container -->
+        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl border border-gray-200">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Order Tracker</h2>
+                <p class="text-gray-500">Enter your order ID to see its journey!</p>
+            </div>
+
+            <!-- Input and Button -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input type="text" id="orderIdInput" placeholder="Enter Order ID" class="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+                <button id="trackButton" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-md">
+                    Track Order
+                </button>
+            </div>
+
+            <!-- Tracking Information and Map -->
+            <div id="trackingInfo" class="hidden">
+                <div class="p-4 bg-gray-100 rounded-xl mb-6">
+                    <p id="orderStatus" class="text-lg font-medium text-gray-700"></p>
+                    <p id="orderIdDisplay" class="text-sm text-gray-500 mt-1"></p>
+                </div>
+
+                <!-- SVG Map Container -->
+                <div id="mapContainer" class="relative w-full aspect-video border border-gray-300 rounded-xl overflow-hidden shadow-inner bg-gray-50">
+                    <!-- SVG Track Map -->
+                    <svg id="trackMap" viewBox="0 0 800 450" class="w-full h-full">
+                        <!-- Background shapes for a stylized map look -->
+                        <path d="M0 50 L100 100 Q150 120 200 100 L300 80 L450 120 L550 100 Q600 80 700 120 L800 150" fill="none" stroke="#6b7280" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="100" cy="100" r="10" fill="#dc2626" />
+                        <circle cx="700" cy="120" r="10" fill="#22c55e" />
+                        <text x="100" y="85" font-size="20" font-weight="bold" fill="#dc2626" text-anchor="middle">Start</text>
+                        <text x="700" y="105" font-size="20" font-weight="bold" fill="#22c55e" text-anchor="middle">End</text>
+
+                        <!-- City markers -->
+                        <circle cx="250" cy="200" r="6" fill="#4b5563" />
+                        <text x="250" y="220" font-size="16" fill="#4b5563" text-anchor="middle">City A</text>
+                        
+                        <circle cx="500" cy="300" r="6" fill="#4b5563" />
+                        <text x="500" y="320" font-size="16" fill="#4b5563" text-anchor="middle">City B</text>
+
+                        <circle cx="650" cy="250" r="6" fill="#4b5563" />
+                        <text x="650" y="270" font-size="16" fill="#4b5563" text-anchor="middle">City C</text>
+                    </svg>
+
+                    <!-- Location Marker (the moving dot) -->
+                    <div id="locationDot" class="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600 shadow-lg ring-2 ring-white transition-all duration-1000 ease-in-out"></div>
                 </div>
             </div>
         </div>
@@ -478,9 +508,14 @@
             const placeOrderBtn = document.getElementById('placeOrderBtn');
             const closeReceiptBtn = document.getElementById('closeReceiptBtn');
             const receiptMessage = document.getElementById('receiptMessage');
-            const trackForm = document.getElementById('trackForm');
-            const statusMessage = document.getElementById('statusMessage');
-            const locationPin = document.getElementById('locationPin');
+            const orderIdInput = document.getElementById('orderIdInput');
+            const trackButton = document.getElementById('trackButton');
+            const trackingInfo = document.getElementById('trackingInfo');
+            const orderStatus = document.getElementById('orderStatus');
+            const orderIdDisplay = document.getElementById('orderIdDisplay');
+            const mapContainer = document.getElementById('mapContainer');
+            const locationDot = document.getElementById('locationDot');
+
 
             // Helper function to create a product card element
             const createProductCard = (product, index) => {
@@ -701,40 +736,57 @@
             });
 
             // Live Location Tracking Simulation
-            trackForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const orderId = document.getElementById('orderId').value;
+            trackButton.addEventListener('click', () => {
+                // Clear any existing interval to stop previous tracking
+                if (trackingInterval) {
+                    clearInterval(trackingInterval);
+                }
+
+                const orderId = orderIdInput.value;
                 if (!orderId) {
-                    statusMessage.textContent = "Please enter a valid Order ID.";
+                    orderStatus.textContent = 'Please enter a valid Order ID.';
+                    orderStatus.className = 'text-lg font-medium text-red-500';
+                    trackingInfo.classList.remove('hidden');
                     return;
                 }
 
-                statusMessage.textContent = `Tracking order #${orderId}...`;
-                locationPin.style.transition = 'top 4s linear, left 4s linear';
-                
-                let step = 0;
-                const path = [
-                    { top: '80%', left: '20%', message: 'Order Confirmed - Preparing for dispatch.' },
-                    { top: '65%', left: '40%', message: 'Your order is out for delivery!' },
-                    { top: '45%', left: '60%', message: 'Your driver is just a few minutes away.' },
-                    { top: '25%', left: '80%', message: 'Your order has been delivered!' }
-                ];
-                
-                if (trackingInterval) clearInterval(trackingInterval);
+                // Display initial tracking info
+                trackingInfo.classList.remove('hidden');
+                orderIdDisplay.textContent = `Order ID: #${orderId}`;
 
+                // Define possible statuses
+                const statuses = [
+                    'Order Placed', 
+                    'In Transit', 
+                    'Out for Delivery', 
+                    'Delivered'
+                ];
+                let statusIndex = 0;
+                
+                // Start the tracking simulation
                 trackingInterval = setInterval(() => {
-                    if (step < path.length) {
-                        locationPin.style.top = path[step].top;
-                        locationPin.style.left = path[step].left;
-                        statusMessage.textContent = path[step].message;
-                        if (step === path.length - 1) {
-                            setTimeout(() => {
-                                clearInterval(trackingInterval);
-                            }, 4000);
-                        }
-                        step++;
+                    // Get the dimensions of the map container
+                    const mapRect = mapContainer.getBoundingClientRect();
+                    const width = mapRect.width;
+                    const height = mapRect.height;
+
+                    // Calculate a random position within the map bounds
+                    const newX = Math.random() * width;
+                    const newY = Math.random() * height;
+
+                    // Move the location dot
+                    locationDot.style.transform = `translate(${newX}px, ${newY}px)`;
+
+                    // Update the status
+                    if (statusIndex < statuses.length) {
+                        orderStatus.textContent = `Status: ${statuses[statusIndex]}`;
+                        statusIndex++;
+                    } else {
+                        orderStatus.textContent = 'Status: Delivered';
+                        orderStatus.className = 'text-lg font-medium text-green-600';
+                        clearInterval(trackingInterval); // Stop the tracking when delivered
                     }
-                }, 4000); // Update every 4 seconds
+                }, 2000); // Update every 2 seconds
             });
         });
     </script>
